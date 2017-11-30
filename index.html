@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sigfox Connect</title>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>
+    var socket = io.connect('//ochannel.centralus.cloudapp.azure.com:3031');
+    socket.on('data', function(data) {
+        inobj = JSON.parse(data.val);
+        console.log(inobj.data);
+        $('#name').text(data.val);
+
+        if (inobj.data == "deadbeef") {
+            $("#fire").attr("src", "https://mhellar.github.io/openchannel/oc-ui-fire1.png");
+            $("#flood").attr("src", "https://mhellar.github.io/openchannel/oc-ui-flood2.png");
+            $("#medical").attr("src", "https://mhellar.github.io/openchannel/oc-ui-med2.png");
+            $("#imok").attr("src", "https://mhellar.github.io/openchannel/oc-ui-ok2.png");
+
+        } else if (inobj.data == "dabbad00") {
+            $("#fire").attr("src", "https://mhellar.github.io/openchannel/oc-ui-fire2.png");
+            $("#flood").attr("src", "https://mhellar.github.io/openchannel/oc-ui-flood1.png");
+            $("#medical").attr("src", "https://mhellar.github.io/openchannel/oc-ui-med2.png");
+            $("#imok").attr("src", "https://mhellar.github.io/openchannel/oc-ui-ok2.png");
+
+        } else if (inobj.data == "acc01ade") {
+            $("#fire").attr("src", "https://mhellar.github.io/openchannel/oc-ui-fire2.png");
+            $("#flood").attr("src", "https://mhellar.github.io/openchannel/oc-ui-flood2.png");
+            $("#medical").attr("src", "https://mhellar.github.io/openchannel/oc-ui-med1.png");
+            $("#imok").attr("src", "https://mhellar.github.io/openchannel/oc-ui-ok2.png");
+
+        } else if (inobj.data == "cafed00d") {
+            $("#fire").attr("src", "https://mhellar.github.io/openchannel/oc-ui-fire2.png");
+            $("#flood").attr("src", "https://mhellar.github.io/openchannel/oc-ui-flood2.png");
+            $("#medical").attr("src", "https://mhellar.github.io/openchannel/oc-ui-med2.png");
+            $("#imok").attr("src", "https://mhellar.github.io/openchannel/oc-ui-ok1.png");
+        } else{
+            $("#fire").attr("src", "https://mhellar.github.io/openchannel/oc-ui-fire2.png");
+            $("#flood").attr("src", "https://mhellar.github.io/openchannel/oc-ui-flood2.png");
+            $("#medical").attr("src", "https://mhellar.github.io/openchannel/oc-ui-med2.png");
+            $("#imok").attr("src", "https://mhellar.github.io/openchannel/oc-ui-ok2.png");
+        }
+
+
+
+    });
+    socket.on('error', function() {
+        console.error(arguments)
+    });
+    </script>
+</head>
+
+<body>
+    <p id="name"></p>
+    <img id="fire" src="https://mhellar.github.io/openchannel/oc-ui-fire2.png" height="200">
+    <img id="flood" src="https://mhellar.github.io/openchannel/oc-ui-flood2.png" height="200">
+    <img id="medical" src="https://mhellar.github.io/openchannel/oc-ui-med2.png" height="200">
+    <img id="imok" src="https://mhellar.github.io/openchannel/oc-ui-ok2.png" height="200">
+</body>
+
+</html>
